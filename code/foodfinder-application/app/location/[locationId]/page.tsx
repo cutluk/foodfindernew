@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import LocationDetail from "components/locations-details";
+import LocationDetail from "@/components/location-details";
 import dbConnect from "middleware/db-connect";
 import { findLocationsById } from "mongoose/locations/services";
 import { LocationType } from "mongoose/locations/schema";
@@ -13,7 +13,7 @@ interface Props {
 async function fetchLocation(locationId: string): Promise<LocationType | null> {
     await dbConnect();
     const locations = await findLocationsById([locationId]);
-    return locations[0] || null;
+    return locations[0] ? JSON.parse(JSON.stringify(locations[0])) : null;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
