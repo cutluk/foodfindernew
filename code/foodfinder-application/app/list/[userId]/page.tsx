@@ -16,9 +16,9 @@ async function fetchUserWishlist(userId: string): Promise<LocationType[]> {
 }
 
 export default async function List({ params }: Props) {
-    const locations: LocationType[] = await fetchUserWishlist(params.userId);
-    const userId: string = params.userId;
-    let title = `The Food Finder - A personal wish list`;
+    const { userId } = await params;
+    const locations: LocationType[] = await fetchUserWishlist(userId);
+    const title = `The Food Finder - A personal wish list`;
 
     return (
         <div>

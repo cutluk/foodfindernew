@@ -17,7 +17,8 @@ async function fetchLocation(locationId: string): Promise<LocationType | null> {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-    const location = await fetchLocation(params.locationId);
+    const { locationId } = await params;
+    const location = await fetchLocation(locationId);
     return {
         title: `The Food Finder - Details for ${location?.name}`,
         description: `The Food Finder. Detail page for ${location?.name}`,
@@ -25,7 +26,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function LocationPage({ params }: Props) {
-    const location = await fetchLocation(params.locationId);
+    const { locationId } = await params;
+    const location = await fetchLocation(locationId);
 
     if (!location) {
         return {
