@@ -31,17 +31,18 @@ services:
         tty: true
         command: "npm run dev"
     
-    # jest:
-    #     container_name: foodfinder-jest
-    #     image: node:lts-alpine
-    #     working_dir: /home/node/code/foodfinder-application
-    #     volumes:
-    #         - ./code:/home/node/code
-    #     depends_on:
-    #         - backend
-    #     environment:
-    #         - NODE_ENV=test
-    #     tty: true
-    #     command: "npm run testWatch"
+    jest:
+        container_name: foodfinder-jest
+        image: node:lts-alpine
+        working_dir: /home/node/code/foodfinder-application
+        volumes:
+            - ./code:/home/node/code
+        depends_on:
+            - backend
+            - application
+        environment:
+            - NODE_ENV=test
+        tty: true
+        command: "npm run testWatch"
 volumes:
     mongodb_data_container:
